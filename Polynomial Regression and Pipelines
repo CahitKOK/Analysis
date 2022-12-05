@@ -1,0 +1,46 @@
+Polynomial regression is a particular case of the general linear regression model or multiple linear regression models.
+
+We get non-linear relationships by squaring or setting higher-order terms of the predictor variables.
+
+There are different orders of polynomial regression:
+
+
+We saw earlier that a linear model did not provide the best fit while using "highway-mpg" as the predictor variable. Let's see if we can try fitting a polynomial model to the data instead.
+
+We will use the following function to plot the data:
+
+def PlotPolly(model, independent_variable, dependent_variabble, Name):
+    x_new = np.linspace(15, 55, 100)
+    y_new = model(x_new)
+​
+    plt.plot(independent_variable, dependent_variabble, '.', x_new, y_new, '-')
+    plt.title('Polynomial Fit with Matplotlib for Price ~ Length')
+    ax = plt.gca()
+    ax.set_facecolor((0.898, 0.898, 0.898))
+    fig = plt.gcf()
+    plt.xlabel(Name)
+    plt.ylabel('Price of Cars')
+​
+    plt.show()
+    plt.close()
+Let's get the variables:
+
+x = df['highway-mpg']
+y = df['price']
+Let's fit the polynomial using the function polyfit, then use the function poly1d to display the polynomial function.
+
+# Here we use a polynomial of the 3rd order (cubic) 
+f = np.polyfit(x, y, 3)
+p = np.poly1d(f)
+print(p)
+        3         2
+-1.557 x + 204.8 x - 8965 x + 1.379e+05
+Let's plot the function:
+
+
+
+
+
+
+
+PlotPolly(p, x, y, 'highway-mpg')
